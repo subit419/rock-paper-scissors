@@ -5,38 +5,50 @@ function getComputerChoice() {
 }
 
 function playRound(e) {
-    const playerSelection = this.innerText;
+    
+    const playerSelection = e.srcElement.id;
     console.log(`player selection: ${playerSelection}`);
     const computerSelection = getComputerChoice();
     console.log(`computer selection: ${computerSelection}`);
-    let resultMessage = "";
-    const results = document.querySelector('#result');
+    let updatedGameMessage = "";
+    let updatedMessageReason = "";
+
+    const gameMessage = document.querySelector('.gameMessage');
+    console.log(gameMessage);
+    const messageReason = document.querySelector('.messageReason');
 
     if (playerSelection.toUpperCase() === computerSelection) {
-        resultMessage = ("Tie! You both picked " + computerSelection);
+        updatedGameMessage = "Tie!";
+        updatedMessageReason = ("You both picked " + playerSelection);
         
     } else if (playerSelection.toUpperCase() === 'ROCK' && computerSelection === 'PAPER') {
-        resultMessage = ("You Lose! Paper beats Rock.");
+        updatedGameMessage = "You Lose!";
+        updatedMessageReason = "Paper beats Rock!";
         
         
     } else if (playerSelection.toUpperCase() === 'ROCK' && computerSelection === 'SCISSORS') {
-        resultMessage = ("You Win! Rock beats Paper");
-        
+        updatedGameMessage = "You Win!";
+        updatedMessageReason = "Rock beats Paper!";
     } else if (playerSelection.toUpperCase() === 'SCISSORS' && computerSelection === 'ROCK') {
         
-        resultMessage = ("You Lose! Rock beats Scissors.");
+        updatedGameMessage = "You Lose!";
+        updatedMessageReason = "Rock beats Scissors!";
         
     } else if (playerSelection.toUpperCase() === 'SCISSORS' && computerSelection === 'PAPER') {
-        resultMessage =("You Win! Scissors beats Paper");
+        updatedGameMessage = "You Win!";
+        updatedMessageReason = "Scissors beats Paper!";
         
     } else if (playerSelection.toUpperCase() === 'PAPER' && computerSelection === 'ROCK') {
-        resultMessage = ("You Win! Paper beats Rock.")
+        updatedGameMessage = "You Win!";
+        updatedMessageReason = "Paper beats Rock!";
         
     } else if (playerSelection.toUpperCase() === 'PAPER' && computerSelection === 'SCISSORS') {
-        resultMessage = ("You Lose! Scissors beats Paper");  
+        updatedGameMessage = "You Lose!";
+        updatedMessageReason = "Scissors beats Paper!";  
     }
 
-    results.innerText = resultMessage;
+    gameMessage.innerText = updatedGameMessage;
+    messageReason.innerText = updatedMessageReason;
     
 
     return;

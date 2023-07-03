@@ -1,9 +1,55 @@
-html {  
-  font-family: 'Press Start 2P', cursive;
+  html {
+    background-color: #1F2937;
   }
-  body {
-    width: 50%;
-    max-width: 800px;
-    min-width: 480px;
-    margin: 0 auto;
+
+  .title {
+    font-family: 'Press Start 2P', cursive;
   }
+
+  
+  header {
+    display:flex;
+    padding: 40px 0;
+    background-color:#131d2b;
+    justify-content: center;
+  }
+
+  .sign {
+    font-size: 100px;
+  }
+
+  h1 {
+    color:#fac650;
+    text-align:center;
+  }
+
+  h1 .gameMessage {
+    
+    font-size: 12px;
+  }
+
+  p {
+    color:#fac650;
+    font-size: 16px;
+  }
+  .scoreboard {
+    background-color:#1F2937;
+  }
+  .buttons {
+    display:flex;
+    padding: 20px 20px;
+    justify-content:space-evenly;
+  }
+
+  .messageReason {
+    text-align:center;
+  }
+
+  button {
+    border: 8px solid rgb(4, 1, 46);
+    border-radius: 32px;
+    box-shadow: 2px 2px 3px black;
+    object-fit: cover;
+    background-color:#fac650;
+  }
+
