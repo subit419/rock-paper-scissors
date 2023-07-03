@@ -5,18 +5,34 @@ function getComputerChoice() {
 }
 
 function playRound(e) {
-    
+    const playerSelectionDisplay = document.querySelector('.playerChoice');
+    const computerSelectionDisplay = document.querySelector('.computerChoice');
+    const gameMessage = document.querySelector('.gameMessage');
+    const messageReason = document.querySelector('.messageReason');
+    const playerScoreDisplay = document.querySelector('.playerScore');
+    const computerScoreDisplay = document.querySelector('.computerScore');
+
     const playerSelection = e.srcElement.id;
     console.log(`player selection: ${playerSelection}`);
     const computerSelection = getComputerChoice();
     console.log(`computer selection: ${computerSelection}`);
     let updatedGameMessage = "";
     let updatedMessageReason = "";
+    playerSelectionDisplay.innerText = e.srcElement.innerText;
 
-    const gameMessage = document.querySelector('.gameMessage');
-    console.log(gameMessage);
-    const messageReason = document.querySelector('.messageReason');
+    // update emoji display logic
+    if (computerSelection == 'ROCK'){
+        computerSelectionDisplay.innerText = "✊";
+    } else if (computerSelection == 'PAPER') {
+        computerSelectionDisplay.innerText = "✋";
+    } else {
+        computerSelectionDisplay.innerText = "✌️";
+    }
 
+
+
+   
+    // game logic 
     if (playerSelection.toUpperCase() === computerSelection) {
         updatedGameMessage = "Tie!";
         updatedMessageReason = ("You both picked " + playerSelection);
@@ -24,31 +40,39 @@ function playRound(e) {
     } else if (playerSelection.toUpperCase() === 'ROCK' && computerSelection === 'PAPER') {
         updatedGameMessage = "You Lose!";
         updatedMessageReason = "Paper beats Rock!";
+        computerScore++;
         
         
     } else if (playerSelection.toUpperCase() === 'ROCK' && computerSelection === 'SCISSORS') {
         updatedGameMessage = "You Win!";
         updatedMessageReason = "Rock beats Paper!";
+        playerScore++;
     } else if (playerSelection.toUpperCase() === 'SCISSORS' && computerSelection === 'ROCK') {
         
         updatedGameMessage = "You Lose!";
         updatedMessageReason = "Rock beats Scissors!";
+        computerScore++;
         
     } else if (playerSelection.toUpperCase() === 'SCISSORS' && computerSelection === 'PAPER') {
         updatedGameMessage = "You Win!";
         updatedMessageReason = "Scissors beats Paper!";
+        playerScore++;
         
     } else if (playerSelection.toUpperCase() === 'PAPER' && computerSelection === 'ROCK') {
         updatedGameMessage = "You Win!";
         updatedMessageReason = "Paper beats Rock!";
+        playerScore++;
         
     } else if (playerSelection.toUpperCase() === 'PAPER' && computerSelection === 'SCISSORS') {
         updatedGameMessage = "You Lose!";
         updatedMessageReason = "Scissors beats Paper!";  
+        computerScore++;
     }
 
     gameMessage.innerText = updatedGameMessage;
     messageReason.innerText = updatedMessageReason;
+    playerScoreDisplay.innerText = "You: " + playerScore;
+    computerScoreDisplay.innerText = "Computer: " + computerScore;
     
 
     return;
@@ -76,9 +100,11 @@ function game() {
 }
 
 //game();
+let playerScore = 0;
+let computerScore = 0;
+console.log (playerScore);
+console.log (computerScore);
 
 const buttons = document.querySelectorAll('button');
-console.log(`Found ${buttons.length} buttons.`);
-console.log(buttons);
 
 buttons.forEach(button => button.addEventListener("click", playRound));
