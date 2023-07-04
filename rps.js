@@ -7,17 +7,13 @@ function getComputerChoice() {
 function playRound(e) {
     const playerSelectionDisplay = document.querySelector('.playerChoice');
     const computerSelectionDisplay = document.querySelector('.computerChoice');
-    const gameMessage = document.querySelector('.gameMessage');
-    const messageReason = document.querySelector('.messageReason');
-    const playerScoreDisplay = document.querySelector('.playerScore');
-    const computerScoreDisplay = document.querySelector('.computerScore');
-
+    
     const playerSelection = e.srcElement.id;
-    console.log(`player selection: ${playerSelection}`);
     const computerSelection = getComputerChoice();
-    console.log(`computer selection: ${computerSelection}`);
+
     let updatedGameMessage = "";
     let updatedMessageReason = "";
+
     playerSelectionDisplay.innerText = e.srcElement.innerText;
 
     // update emoji display logic
@@ -69,41 +65,57 @@ function playRound(e) {
         computerScore++;
     }
 
-    gameMessage.innerText = updatedGameMessage;
-    messageReason.innerText = updatedMessageReason;
-    playerScoreDisplay.innerText = "You: " + playerScore;
-    computerScoreDisplay.innerText = "Computer: " + computerScore;
+    updateGameMessages (updatedGameMessage, updatedMessageReason);
+    updateScores (playerScore, computerScore);
     
-
     return;
 }
 
-
-function game() {
-    let playerScore = 0;
-    let computerScore = 0;
+function updateGameMessages (updatedGameMessage, updatedMessageReason) {
     
-    for (let i = 0; i < 5; i++) {
-        let playerSelection = String (prompt ("Enter either rock, paper, or scissors", ""));
-        const computerSelection = getComputerChoice();
-        if (playRound(playerSelection, computerSelection).includes("Win")) {
-            playerScore++;
-        } else if (playRound(playerSelection, computerSelection).includes("Lose")) {
-            computerScore++;
-        } else {
-            i--;
-        }
-
-        console.log (playRound(playerSelection, computerSelection));
-    }
-    console.log (`Game of 5 rounds has ended. Player: ${playerScore}, Computer: ${computerScore}`)
+    const gameMessage = document.querySelector('.gameMessage');
+    const messageReason = document.querySelector('.messageReason');
+    gameMessage.innerText = updatedGameMessage;
+    messageReason.innerText = updatedMessageReason;
 }
 
-//game();
+function updateScores (updatedPlayerScore, updatedComputerScore) {
+    playerScore = updatedPlayerScore;
+    computerScore = updatedComputerScore;
+
+    var modal = document.getElementById("myModal");
+    var span = document.getElementsByClassName("close")[0];
+    var gameOverMessageBox = document.getElementById("gameOverText");
+    const playerScoreDisplay = document.querySelector('.playerScore');
+    const computerScoreDisplay = document.querySelector('.computerScore');
+
+    playerScoreDisplay.innerText = "You: " + updatedPlayerScore;
+    computerScoreDisplay.innerText = "Computer: " + updatedComputerScore;
+
+    if (playerScore == 5) {
+        gameOverMessageBox.innerText = "You won! You beat the computer to getting 5 wins.";
+        modal.style.display = "block";
+        
+    
+    } else if (computerScore == 5){
+        gameOverMessageBox.innerText = "You Lost! The Computer got to 5 wins first.";
+        modal.style.display = "block";
+    }
+    
+    span.onclick = function() {
+        const playerSelectionDisplay = document.querySelector('.playerChoice');
+        const computerSelectionDisplay = document.querySelector('.computerChoice');
+        modal.style.display = "none";
+        updateScores (0, 0);
+        updateGameMessages ("Play rock paper scissors against the computer!", "Select your choice");
+        playerSelectionDisplay.innerText = "❓";
+        computerSelectionDisplay.innerText = "❓";
+    }
+
+}
+
 let playerScore = 0;
 let computerScore = 0;
-console.log (playerScore);
-console.log (computerScore);
 
 const buttons = document.querySelectorAll('button');
 
