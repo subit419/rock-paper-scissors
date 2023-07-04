@@ -88,16 +88,19 @@ function updateScores (updatedPlayerScore, updatedComputerScore) {
     var gameOverMessageBox = document.getElementById("gameOverText");
     const playerScoreDisplay = document.querySelector('.playerScore');
     const computerScoreDisplay = document.querySelector('.computerScore');
+    var modalBanner = document.getElementById("modalBanner");
 
     playerScoreDisplay.innerText = "You: " + updatedPlayerScore;
     computerScoreDisplay.innerText = "CPU: " + updatedComputerScore;
 
     if (playerScore == 5) {
+        modalBanner.innerText = "VICTORY!"
         gameOverMessageBox.innerText = "You won! You beat the computer to getting 5 wins.";
         modal.style.display = "block";
         
     
     } else if (computerScore == 5){
+        modalBanner.innerText = "DEFEAT!"
         gameOverMessageBox.innerText = "You Lost! The Computer got to 5 wins first.";
         modal.style.display = "block";
     }
@@ -107,9 +110,10 @@ function updateScores (updatedPlayerScore, updatedComputerScore) {
         const computerSelectionDisplay = document.querySelector('.computerChoice');
         modal.style.display = "none";
         updateScores (0, 0);
-        updateGameMessages ("Play rock paper scissors against the computer!", "Select your choice");
+        updateGameMessages ("First to 5 wins, YOU vs. CPU", "Select your choice");
         playerSelectionDisplay.innerText = "❓";
         computerSelectionDisplay.innerText = "❓";
+        modalBanner.innerText = "Game Over!";
     }
 
 }
