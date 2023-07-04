@@ -90,7 +90,7 @@ function updateScores (updatedPlayerScore, updatedComputerScore) {
     const computerScoreDisplay = document.querySelector('.computerScore');
 
     playerScoreDisplay.innerText = "You: " + updatedPlayerScore;
-    computerScoreDisplay.innerText = "Computer: " + updatedComputerScore;
+    computerScoreDisplay.innerText = "CPU: " + updatedComputerScore;
 
     if (playerScore == 5) {
         gameOverMessageBox.innerText = "You won! You beat the computer to getting 5 wins.";
