@@ -41,7 +41,7 @@ function playRound(e) {
         
     } else if (playerSelection.toUpperCase() === 'ROCK' && computerSelection === 'SCISSORS') {
         updatedGameMessage = "You Win!";
-        updatedMessageReason = "Rock beats Paper!";
+        updatedMessageReason = "Rock beats Scissors!";
         playerScore++;
     } else if (playerSelection.toUpperCase() === 'SCISSORS' && computerSelection === 'ROCK') {
         
